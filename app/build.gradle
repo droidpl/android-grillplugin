@@ -1,11 +1,12 @@
 apply plugin: 'com.android.application'
+//apply plugin: project(":bbqplugin")
 
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
 
     defaultConfig {
-        applicationId "com.mobgen.myapplication"
+        applicationId "com.droidpl.android.bbqpluginapp"
         minSdkVersion 15
         targetSdkVersion 23
         versionCode 1

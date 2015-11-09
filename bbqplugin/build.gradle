@@ -1,0 +1,10 @@
+apply plugin: 'groovy'
+apply plugin: 'maven'
+
+group = "com.droidpl.android"
+version = "1.0"
+
+dependencies {
+    compile gradleApi()
+    compile localGroovy()
+}
