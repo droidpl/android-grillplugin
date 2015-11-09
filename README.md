@@ -16,7 +16,7 @@ To install the plugin use the following command line:
 ```
 
 ## Apply plugin in your application
-To apply a plugin in your application you can use:
+To apply a plugin in the application you can use:
 ```groovy
 apply plugin: "bbqplugin"
 ```
@@ -27,13 +27,20 @@ apply plugin: "com.droidpl.android.bbqplugin"
 ```
 
 ## Test the application
-To install the application and make it work, you need to install the plugin first as stated in the 
+To install the application in your device, you need to install the plugin first as stated in the
 previous section. After that you can execute one of the following commands to test the tasks
-explained in the talk:
+explained in the talk.
 
-1. Continuous integration commit number counting.
-2. Continuous integration build number.
-3. Android tests reports from jacoco.
-4. Unit testing reports from jacoco on JVM.
-5. Code quality information upload.
-6. Documentation from doclava.
+###Debug
+1. Android tests reports with jacoco:
+2. Unit testing reports with jacoco on JVM:
+3. Code quality information uploaded:
+4. Documentation from doclava:
+5. Install the application with CI info: ```./gradlew installDebug/installDebug```
+
+### Release
+1. Android tests reports with jacoco:
+2. Unit testing reports with jacoco on JVM:
+3. Code quality information uploaded:
+4. Documentation from doclava:
+5. Install the application with CI info: ```./gradlew installDebug/installRelease```

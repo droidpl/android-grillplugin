@@ -17,6 +17,10 @@ public class BBQPlugin implements Plugin<Project> {
 
     @Override
     public void apply(Project project) {
-
+        project.extensions.create("BBQ", BBQPluginExtension, project)
+        project.afterEvaluate {
+            project.BBQ.ensureValid()
+            project.BBQ.createTasks()
+        }
     }
 }

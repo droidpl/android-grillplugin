@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
-if(!hasProperty("pluginCompile")){
+def isCompiling = hasProperty("pluginCompile")
+if(!isCompiling){
     apply plugin: 'bbqplugin'
 }
 
@@ -11,8 +12,8 @@ android {
         applicationId "com.droidpl.android.bbqpluginapp"
         minSdkVersion 15
         targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
+        versionCode !isCompiling ? BBQ.CI.getCommitRevision() : 0
+        versionName !isCompiling ? BBQ.CI.getTag() : "None"
     }
     buildTypes {
         release {
@@ -25,4 +26,10 @@ android {
 dependencies {
     compile 'com.android.support:appcompat-v7:23.1.0'
     testCompile 'junit:junit:4.12'
+}
+
+if(!isCompiling){
+    BBQ {
+        debug true
+    }
 }
