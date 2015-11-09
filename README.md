@@ -22,7 +22,7 @@ apply plugin: "bbqplugin"
 ```
 You can use also the full name plugin:
 
-``groovy
+```groovy
 apply plugin: "com.droidpl.android.bbqplugin"
 ```
 
