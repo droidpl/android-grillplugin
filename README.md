@@ -11,8 +11,19 @@ This plugin enables the following features in an android project:
 ## Install the plugin
 
 To install the plugin use the following command line:
-```
+```bash
 ./gradlew -PpluginCompile bbqplugin:install
+```
+
+## Apply plugin in your application
+To apply a plugin in your application you can use:
+```groovy
+apply plugin: "bbqplugin"
+```
+You can use also the full name plugin:
+
+``groovy
+apply plugin: "com.droidpl.android.bbqplugin"
 ```
 
 ## Test the application
