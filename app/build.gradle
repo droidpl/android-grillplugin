@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 def isCompiling = hasProperty("pluginCompile")
 if(!isCompiling){
-    apply plugin: 'bbqplugin'
+    apply plugin: 'grill'
 }
 
 android {
@@ -12,8 +12,8 @@ android {
         applicationId "com.droidpl.android.bbqpluginapp"
         minSdkVersion 15
         targetSdkVersion 23
-        versionCode !isCompiling ? BBQ.CI.getCommitRevision() : 0
-        versionName !isCompiling ? BBQ.CI.getTag() : "None"
+        versionCode !isCompiling ? grill.CI.getCommitRevision() : 0
+        versionName !isCompiling ? grill.CI.getTag() : "None"
     }
 
     buildTypes {
@@ -30,7 +30,7 @@ dependencies {
 }
 
 if(!isCompiling){
-    BBQ {
+    grill {
         debug true
         codeQuality {
             host "http://192.168.5.191:9000/"

@@ -1,6 +1,6 @@
-package com.droidpl.android.bbqplugin
+package com.droidpl.android.grillplugin
 
-import com.droidpl.android.bbqplugin.tasks.BBQPluginExtension
+import com.droidpl.android.grillplugin.tasks.GrillPluginExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
@@ -14,13 +14,13 @@ import org.gradle.api.Project
  * <li>Documentation: Doclava</li>
  * </ol>
  */
-public class BBQPlugin implements Plugin<Project> {
+public class GrillPlugin implements Plugin<Project> {
 
     @Override
     public void apply(Project project) {
-        project.extensions.create("BBQ", BBQPluginExtension, project)
+        project.extensions.create("grill", GrillPluginExtension, project)
         project.afterEvaluate {
-            BBQPluginExtension extension = project.BBQ as BBQPluginExtension
+            GrillPluginExtension extension = project.grill as GrillPluginExtension
             extension.checkPreconditions()
             extension.configureOn(project)
         }

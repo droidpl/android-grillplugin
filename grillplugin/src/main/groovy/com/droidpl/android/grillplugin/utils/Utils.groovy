@@ -1,4 +1,4 @@
-package com.droidpl.android.bbqplugin.utils
+package com.droidpl.android.grillplugin.utils
 
 import com.android.build.gradle.AppPlugin
 import com.android.build.gradle.LibraryPlugin

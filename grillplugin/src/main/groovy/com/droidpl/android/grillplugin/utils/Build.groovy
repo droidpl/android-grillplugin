@@ -1,4 +1,4 @@
-package com.droidpl.android.bbqplugin.utils
+package com.droidpl.android.grillplugin.utils
 /**
  * Helper class that performs some operations related to android.
  */

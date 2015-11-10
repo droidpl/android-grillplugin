@@ -1,6 +1,6 @@
-package com.droidpl.android.bbqplugin.tasks
+package com.droidpl.android.grillplugin.tasks
 
-import com.droidpl.android.bbqplugin.utils.Utils
+import com.droidpl.android.grillplugin.utils.Utils
 import org.gradle.api.Project
 import org.gradle.api.ProjectConfigurationException
 import org.gradle.sonar.runner.tasks.SonarRunner

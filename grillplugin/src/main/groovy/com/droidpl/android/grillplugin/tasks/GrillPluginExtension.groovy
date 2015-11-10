@@ -1,13 +1,13 @@
-package com.droidpl.android.bbqplugin.tasks
+package com.droidpl.android.grillplugin.tasks
 
-import com.droidpl.android.bbqplugin.utils.CIHelper
-import com.droidpl.android.bbqplugin.utils.Utils
+import com.droidpl.android.grillplugin.utils.CIHelper
+import com.droidpl.android.grillplugin.utils.Utils
 import org.gradle.api.Project
 
 /**
  * Plugin extension to allow configurations on the current plugin.
  */
-public class BBQPluginExtension extends TaskConfigurer {
+public class GrillPluginExtension extends TaskConfigurer {
 
     /**
      * The project on which this plugin is applied.
@@ -27,7 +27,7 @@ public class BBQPluginExtension extends TaskConfigurer {
      * Constructor that uses the project.
      * @param project The project with the plugin applied.
      */
-    public BBQPluginExtension(Project project){
+    public GrillPluginExtension(Project project){
         //Configure CI
         this.ext.CI = new CIHelper()
         this.project = project

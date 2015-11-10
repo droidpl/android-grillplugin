@@ -1,4 +1,4 @@
-package com.droidpl.android.bbqplugin.tasks
+package com.droidpl.android.grillplugin.tasks
 
 import org.gradle.api.Project
 import org.gradle.testing.jacoco.tasks.JacocoReport

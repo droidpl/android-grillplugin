@@ -1,1 +1,1 @@
-include ':app', ':bbqplugin'
+include ':app', ':grillplugin'

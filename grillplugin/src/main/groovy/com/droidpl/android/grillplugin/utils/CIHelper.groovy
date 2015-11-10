@@ -1,4 +1,4 @@
-package com.droidpl.android.bbqplugin.utils
+package com.droidpl.android.grillplugin.utils
 /**
  * Plugin extension to allow configurations on the current plugin.
  */
