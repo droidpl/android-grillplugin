@@ -12,18 +12,18 @@ This plugin enables the following features in your android project:
 
 To install the plugin use the following command line:
 ```bash
-./gradlew -PpluginCompile bbqplugin:install
+./gradlew -PpluginCompile grillplugin:install
 ```
 
 ## Apply plugin in your application
 To apply a plugin in the application you can use:
 ```groovy
-apply plugin: "bbqplugin"
+apply plugin: "grill"
 ```
 You can use also the full name plugin:
 
 ```groovy
-apply plugin: "com.droidpl.android.bbqplugin"
+apply plugin: "com.droidpl.android.grillplugin"
 ```
 
 ## Test the application

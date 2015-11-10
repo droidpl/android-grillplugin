@@ -24,9 +24,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Button button = (Button) findViewById(R.id.button_show);
-        mText = (TextView) findViewById(R.id.hello);
+        setContentView(com.github.android.bbqpluginapp.R.layout.activity_main);
+        Button button = (Button) findViewById(com.github.android.bbqpluginapp.R.id.button_show);
+        mText = (TextView) findViewById(com.github.android.bbqpluginapp.R.id.hello);
         button.setOnClickListener(this);
         mPresenter = new MainPresenter(this);
     }
