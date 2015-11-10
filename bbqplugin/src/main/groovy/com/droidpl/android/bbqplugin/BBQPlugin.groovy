@@ -1,7 +1,8 @@
-package com.droidpl.android.bbqplugin;
+package com.droidpl.android.bbqplugin
 
-import org.gradle.api.Plugin;
-import org.gradle.api.Project;
+import com.droidpl.android.bbqplugin.tasks.BBQPluginExtension
+import org.gradle.api.Plugin
+import org.gradle.api.Project
 
 /**
  * The plugin that enhances your android project. This plugin allows to add:
@@ -19,8 +20,9 @@ public class BBQPlugin implements Plugin<Project> {
     public void apply(Project project) {
         project.extensions.create("BBQ", BBQPluginExtension, project)
         project.afterEvaluate {
-            project.BBQ.ensureValid()
-            project.BBQ.createTasks()
+            BBQPluginExtension extension = project.BBQ as BBQPluginExtension
+            extension.checkPreconditions()
+            extension.configureOn(project)
         }
     }
 }

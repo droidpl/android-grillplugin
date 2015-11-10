@@ -1,7 +1,7 @@
-# BABBQGradle
+# Grill plugin (BABBQ Europe)
 
-Supporting example for the talk "The other Android Getting Started Guide" in the Big Android BBQ
-This plugin enables the following features in an android project:
+Supporting plugin based on the talk "The other Android Getting Started Guide" in the Big Android BBQ (Europe).
+This plugin enables the following features in your android project:
  * Continuous integration tips
  * Unit testing
  * Unit test code coverage: Jacoco

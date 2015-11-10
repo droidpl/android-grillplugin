@@ -15,6 +15,7 @@ android {
         versionCode !isCompiling ? BBQ.CI.getCommitRevision() : 0
         versionName !isCompiling ? BBQ.CI.getTag() : "None"
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -31,5 +32,12 @@ dependencies {
 if(!isCompiling){
     BBQ {
         debug true
+        codeQuality {
+            host "http://192.168.5.191:9000/"
+            projectKey "myNamespace:myKey"
+            dbHost "jdbc:mysql://localhost:3306/sonar_schema"
+            dbUser "sonar"
+            dbPassword "sonar"
+        }
     }
 }
