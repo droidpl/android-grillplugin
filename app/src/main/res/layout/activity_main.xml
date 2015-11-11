@@ -12,7 +12,7 @@
     android:gravity="center">
 
     <TextView
-        android:id="@+id/hello"
+        android:id="@+id/count"
         android:textSize="100sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

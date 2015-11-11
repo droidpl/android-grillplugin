@@ -39,16 +39,18 @@ public class SonarQualityTask extends TaskConfigurer{
      */
     private String databasePassword
 
-
     /**
      * The intermediates for the plugin.
      */
-    //TODO fix this name
     private final String BINARIES = "/intermediates/classes"
     /**
      * The path for jacoco info.
      */
     private final String JACOCO_PATH = "/jacoco"
+    /**
+     * The source value by default.
+     */
+    private final String SOURCES = "src/main"
 
     public SonarQualityTask(Project project){
         sonarProjectName = project.name
@@ -107,7 +109,7 @@ public class SonarQualityTask extends TaskConfigurer{
                         property "sonar.projectName", "$sonarProjectName"
 
                         property "sonar.sources", "$SOURCES"
-                        property "sonar.binaries", "${project.buildDir}$BINARIES"
+                        property "sonar.binaries", "${project.buildDir}$BINARIES${Utils.buildVariantPath(variant)}"
                         property "sonar.jacoco.reportPath", "${project.buildDir}$JACOCO_PATH/test${variant.getName().capitalize()}UnitTest.exec"
                     }
                 }

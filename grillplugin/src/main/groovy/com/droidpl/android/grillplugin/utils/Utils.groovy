@@ -1,9 +1,8 @@
 package com.droidpl.android.grillplugin.utils
-
 import com.android.build.gradle.AppPlugin
 import com.android.build.gradle.LibraryPlugin
+import com.android.build.gradle.api.BaseVariant
 import org.gradle.api.Project
-
 /**
  * Helper class that performs some opetations related to android.
  */
@@ -24,5 +23,14 @@ public class Utils {
             return project.android.libraryVariants
         }
         return null
+    }
+
+    static def buildVariantPath(BaseVariant variant) {
+        StringBuilder builder = new StringBuilder()
+        if(variant.getFlavorName() != null){
+            builder.append("/${variant.getFlavorName()}")
+        }
+        builder.append("/${variant.getBuildType().getName()}")
+        return builder.toString()
     }
 }

@@ -4,14 +4,15 @@ package com.droidpl.android.grillplugin.utils
  */
 public class CIHelper {
 
+    private final String COMMAND = "git rev-list HEAD --first-parent --count"
+
     public int getCommitRevision(){
-        def counter = 0
-        def process = "git rev-list HEAD --first-parent --count".execute()
-        def text = process.text
-        if(!text.isEmpty()){
-            counter = text.toInteger()
+        def count = 0
+        def commitNumber = COMMAND.execute().text
+        if(!commitNumber.isEmpty()){
+            count = commitNumber.toInteger()
         }
-        return counter
+        return count
     }
 
     public String getTag(){

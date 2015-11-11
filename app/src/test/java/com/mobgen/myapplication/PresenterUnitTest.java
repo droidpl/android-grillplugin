@@ -17,7 +17,7 @@ import static org.mockito.Mockito.mock;
  * To work on unit tests, switch the Test Artifact in the Build Variants view.
  */
 @RunWith(BlockJUnit4ClassRunner.class)
-public class ExampleUnitTest {
+public class PresenterUnitTest {
 
     @Test
     public void presenterAdditionTest() throws Exception {
