@@ -1,14 +1,11 @@
 package com.droidpl.android.grillplugin.tasks
-
 import com.droidpl.android.grillplugin.utils.Utils
 import org.gradle.api.Project
 import org.gradle.api.ProjectConfigurationException
-import org.gradle.sonar.runner.tasks.SonarRunner
-
 /**
  * Task to allow the sonar runner to make the work.
  */
-public class SonarQualityTask extends TaskConfigurer{
+public class SonarQualityTask extends TaskConfigurer {
 
     /**
      * Sonar fully qualified host name.
@@ -22,6 +19,10 @@ public class SonarQualityTask extends TaskConfigurer{
      * The project name from sonar.
      */
     private String sonarProjectName
+    /**
+     * The version of the project for sonar
+     */
+    private String sonarProjectVersion
     /**
      * The database host where sonar is taking all the data.
      */
@@ -52,10 +53,6 @@ public class SonarQualityTask extends TaskConfigurer{
      */
     private final String SOURCES = "src/main"
 
-    public SonarQualityTask(Project project){
-        sonarProjectName = project.name
-    }
-
     def host(String hostName){
         sonarHost = hostName
     }
@@ -66,6 +63,10 @@ public class SonarQualityTask extends TaskConfigurer{
 
     def projectKey(String projectKey){
         sonarProjectKey = projectKey
+    }
+
+    def projectVersion(String projectVersion){
+        sonarProjectVersion = projectVersion
     }
 
     def dbHost(String host){
@@ -86,7 +87,7 @@ public class SonarQualityTask extends TaskConfigurer{
 
     @Override
     void checkPreconditions() {
-        if(sonarHost == null || sonarProjectKey == null || databaseHost == null || databaseUsername == null || databasePassword == null){
+        if(sonarHost == null || sonarProjectName == null || sonarProjectKey == null || sonarProjectVersion == null || databaseHost == null || databaseUsername == null || databasePassword == null){
             throw new ProjectConfigurationException("The project could not be configured because one of the fields from the code quality task was not set.", null)
         }
     }
@@ -95,23 +96,27 @@ public class SonarQualityTask extends TaskConfigurer{
     void configureOn(Project project) {
         project.apply plugin : "sonar-runner"
         Utils.getVariants(project).all { variant ->
-            project.tasks.create(name: "codeQuality${variant.getName().capitalize()}", type: SonarRunner, dependsOn: "test${variant.getName().capitalize()}UnitTest") {
-                group = "BBQ"
-                project.sonarRunner {
-                    sonarProperties {
-                        property "sonar.host.url", "$sonarHost"
-                        property "sonar.jdbc.url", "$databaseHost"
-                        property "sonar.jdbc.driverClassName", "$databaseDriver"
-                        property "sonar.jdbc.username", "$databaseUsername"
-                        property "sonar.jdbc.password", "$databasePassword"
+            project.tasks.create(name: "codeQuality${variant.getName().capitalize()}", dependsOn: "test${variant.getName().capitalize()}UnitTest") {
+                group = "grill"
+                doLast {
+                    project.sonarRunner {
+                        sonarProperties {
+                            property "sonar.host.url", "$sonarHost"
+                            property "sonar.jdbc.url", "$databaseHost"
+                            property "sonar.jdbc.driverClassName", "$databaseDriver"
+                            property "sonar.jdbc.username", "$databaseUsername"
+                            property "sonar.jdbc.password", "$databasePassword"
 
-                        property "sonar.projectKey", "$sonarProjectKey"
-                        property "sonar.projectName", "$sonarProjectName"
+                            property "sonar.projectVersion", "$sonarProjectVersion"
+                            property "sonar.projectKey", "$sonarProjectKey"
+                            property "sonar.projectName", "$sonarProjectName"
 
-                        property "sonar.sources", "$SOURCES"
-                        property "sonar.binaries", "${project.buildDir}$BINARIES${Utils.buildVariantPath(variant)}"
-                        property "sonar.jacoco.reportPath", "${project.buildDir}$JACOCO_PATH/test${variant.getName().capitalize()}UnitTest.exec"
+                            property "sonar.sources", "$SOURCES"
+                            property "sonar.binaries", "${project.buildDir}$BINARIES${Utils.buildVariantPath(variant)}"
+                            property "sonar.jacoco.reportPath", "${project.buildDir}$JACOCO_PATH/test${variant.getName().capitalize()}UnitTest.exec"
+                        }
                     }
+                    project.tasks.findByName("sonarRunner").execute()
                 }
             }
         }

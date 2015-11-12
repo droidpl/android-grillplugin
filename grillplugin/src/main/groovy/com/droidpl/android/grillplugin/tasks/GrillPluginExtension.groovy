@@ -48,7 +48,7 @@ public class GrillPluginExtension extends TaskConfigurer {
      * @param properties The properties.
      */
     def codeQuality(Closure properties){
-        qualityTask = new SonarQualityTask(project)
+        qualityTask = new SonarQualityTask()
         project.configure(qualityTask, properties)
     }
 
