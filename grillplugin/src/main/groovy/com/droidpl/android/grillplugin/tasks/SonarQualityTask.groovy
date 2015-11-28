@@ -2,6 +2,7 @@ package com.droidpl.android.grillplugin.tasks
 import com.droidpl.android.grillplugin.utils.Utils
 import org.gradle.api.Project
 import org.gradle.api.ProjectConfigurationException
+import org.sonarqube.gradle.SonarQubePlugin
 /**
  * Task to allow the sonar runner to make the work.
  */
@@ -94,13 +95,16 @@ public class SonarQualityTask extends TaskConfigurer {
 
     @Override
     void configureOn(Project project) {
-        project.apply plugin : "sonar-runner"
+        project.buildscript.repositories {
+            maven { url "https://plugins.gradle.org/m2/" }
+        }
+        project.apply plugin: SonarQubePlugin
         Utils.getVariants(project).all { variant ->
             project.tasks.create(name: "codeQuality${variant.getName().capitalize()}", dependsOn: "test${variant.getName().capitalize()}UnitTest") {
                 group = "grill"
                 doLast {
-                    project.sonarRunner {
-                        sonarProperties {
+                    project.sonarqube {
+                        properties {
                             property "sonar.host.url", "$sonarHost"
                             property "sonar.jdbc.url", "$databaseHost"
                             property "sonar.jdbc.driverClassName", "$databaseDriver"
@@ -116,7 +120,7 @@ public class SonarQualityTask extends TaskConfigurer {
                             property "sonar.jacoco.reportPath", "${project.buildDir}$JACOCO_PATH/test${variant.getName().capitalize()}UnitTest.exec"
                         }
                     }
-                    project.tasks.findByName("sonarRunner").execute()
+                    project.tasks.findByName("sonarqube").execute()
                 }
             }
         }

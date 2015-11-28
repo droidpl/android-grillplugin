@@ -17,15 +17,25 @@ android {
     }
 
     buildTypes {
+        debug {
+            testCoverageEnabled true
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    productFlavors {
+        pro {
+        }
+        free {
+        }
+    }
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:23.1.0'
+    compile 'com.android.support:appcompat-v7:23.1.1'
     testCompile 'junit:junit:4.12'
     testCompile 'org.mockito:mockito-core:1.10.19'
 }
@@ -34,11 +44,14 @@ if(!isCompiling){
     grill {
         debug true
         codeQuality {
-            host "http://192.168.5.191:9000/"
-            projectKey "myNamespace:myKey"
-            dbHost "jdbc:mysql://localhost:3306/sonar_schema"
+            host "http://localhost:9000/"
+            projectKey "grillkey:master"
+            projectName "grillTest"
+            projectVersion "${grill.CI.getTag()}"
+            dbHost "jdbc:mysql://localhost:3306/sonar"
             dbUser "sonar"
             dbPassword "sonar"
         }
+        documentation{}
     }
 }

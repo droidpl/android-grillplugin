@@ -19,8 +19,17 @@ public class GrillPluginExtension extends TaskConfigurer {
      */
     private boolean debugEnabled = false
 
+    /**
+     * Quality task.
+     */
     private SonarQualityTask qualityTask
+    /**
+     * Testing task.
+     */
     private TestCoverageTask testingTask
+    /**
+     * Documentation task.
+     */
     private DocumentationTask documentationTask
 
     /**
@@ -52,6 +61,16 @@ public class GrillPluginExtension extends TaskConfigurer {
         project.configure(qualityTask, properties)
     }
 
+    /**
+     * DSL Method.
+     * Enables the documentation task.
+     * @param properties Properties for the documentation task.
+     */
+    def documentation(Closure properties){
+        documentationTask = new DocumentationTask()
+        project.configure(documentationTask, properties)
+    }
+
     @Override
     void checkPreconditions() {
         qualityTask?.checkPreconditions()
@@ -62,11 +81,11 @@ public class GrillPluginExtension extends TaskConfigurer {
     @Override
     void configureOn(Project project) {
         printDebugInfo()
-        qualityTask?.configureOn(project)
         //Only create those tasks if this is an android project (library or app)
         if(Utils.isAndroidPlugin(project)){
-            testingTask?.configureOn(project)
+            qualityTask?.configureOn(project)
             documentationTask?.configureOn(project)
+            testingTask?.configureOn(project)
         }
     }
 
@@ -75,7 +94,7 @@ public class GrillPluginExtension extends TaskConfigurer {
      */
     private void printDebugInfo(){
         if(this.debugEnabled){
-            println "------- BBQ BUILD INFO --------"
+            println "----- GRILL BUILD INFO ------"
             println "Revision: ${CI.getCommitRevision()}"
             println "Branch: ${CI.getBranch()}"
             println "Tag: ${CI.getTag()}"
