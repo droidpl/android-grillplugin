@@ -6,7 +6,7 @@ import org.sonarqube.gradle.SonarQubePlugin
 /**
  * Task to allow the sonar runner to make the work.
  */
-public class SonarQualityTask extends TaskConfigurer {
+public class SonarQualityTask extends AbstractTaskConfigurer {
 
     /**
      * Sonar fully qualified host name.
