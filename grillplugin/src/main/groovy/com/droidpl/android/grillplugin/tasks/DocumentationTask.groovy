@@ -4,18 +4,23 @@ import com.droidpl.android.grillplugin.utils.Utils
 import org.gradle.api.Project
 import org.gradle.api.tasks.javadoc.Javadoc
 
-public class DocumentationTask extends TaskConfigurer{
+public class DocumentationTask extends AbstractTaskConfigurer {
 
     private String doclavaVersion = "1.0.6"
 
-    def doclavaVersion(String version){
+    private String templateDir = "/docs/template"
+
+    def doclavaVersion(String version) {
         doclavaVersion = version
+    }
+
+    def templateDir(String dirName) {
+        templateDir = dirName
     }
 
     @Override
     void checkPreconditions() {
         //No preconditions for the documentation plugin
-        println "Checking preconditions for doc..."
     }
 
     @Override
@@ -35,7 +40,7 @@ public class DocumentationTask extends TaskConfigurer{
                 exclude '**/BuildConfig.java'
                 exclude '**/R.java'
                 options {
-                    addStringOption "templatedir", "${project.projectDir}/../docs/template"
+                    addStringOption "templatedir", "${project.projectDir}/..${templateDir}"
                     doclet "com.google.doclava.Doclava"
                     docletpath = project.configurations.docLava.files.asType(List)
                     bootClasspath new File(System.getenv('JAVA_HOME') + "/jre/lib/rt.jar")

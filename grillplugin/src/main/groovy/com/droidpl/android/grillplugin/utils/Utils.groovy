@@ -4,7 +4,7 @@ import com.android.build.gradle.LibraryPlugin
 import com.android.build.gradle.api.BaseVariant
 import org.gradle.api.Project
 /**
- * Helper class that performs some opetations related to android.
+ * Helper class that performs some operations related to android.
  */
 public class Utils {
 

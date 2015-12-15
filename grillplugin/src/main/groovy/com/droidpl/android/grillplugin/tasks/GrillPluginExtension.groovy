@@ -7,7 +7,7 @@ import org.gradle.api.Project
 /**
  * Plugin extension to allow configurations on the current plugin.
  */
-public class GrillPluginExtension extends TaskConfigurer {
+public class GrillPluginExtension extends AbstractTaskConfigurer {
 
     /**
      * The project on which this plugin is applied.
@@ -23,10 +23,12 @@ public class GrillPluginExtension extends TaskConfigurer {
      * Quality task.
      */
     private SonarQualityTask qualityTask
+
     /**
      * Testing task.
      */
     private TestCoverageTask testingTask
+
     /**
      * Documentation task.
      */
@@ -36,7 +38,7 @@ public class GrillPluginExtension extends TaskConfigurer {
      * Constructor that uses the project.
      * @param project The project with the plugin applied.
      */
-    public GrillPluginExtension(Project project){
+    public GrillPluginExtension(Project project) {
         //Configure CI
         this.ext.CI = new CIHelper()
         this.project = project
@@ -47,7 +49,7 @@ public class GrillPluginExtension extends TaskConfigurer {
      * Enables the debug mode.
      * @param debugEnabled True if it should be enabled. False otherwise.
      */
-    def debug(boolean debugEnabled){
+    def debug(boolean debugEnabled) {
         this.debugEnabled = debugEnabled
     }
 
@@ -56,7 +58,7 @@ public class GrillPluginExtension extends TaskConfigurer {
      * Enables the code quality feature and tasks.
      * @param properties The properties.
      */
-    def codeQuality(Closure properties){
+    def codeQuality(Closure properties) {
         qualityTask = new SonarQualityTask()
         project.configure(qualityTask, properties)
     }
@@ -66,34 +68,56 @@ public class GrillPluginExtension extends TaskConfigurer {
      * Enables the documentation task.
      * @param properties Properties for the documentation task.
      */
-    def documentation(Closure properties){
+    def documentation(Closure properties) {
         documentationTask = new DocumentationTask()
         project.configure(documentationTask, properties)
     }
 
+    /**
+     * DSL Method.
+     * Enables the test coverage.
+     * @param properties The properties to attach to the task.
+     */
+    def coverage(Closure properties) {
+        testingTask = new TestCoverageTask()
+        project.configure(testingTask, properties)
+    }
+
     @Override
     void checkPreconditions() {
-        qualityTask?.checkPreconditions()
-        testingTask?.checkPreconditions()
-        documentationTask?.checkPreconditions()
+        if(qualityTask?.isEnabled()){
+            qualityTask.checkPreconditions()
+        }
+        if(testingTask?.isEnabled()){
+            testingTask.checkPreconditions()
+        }
+        if(documentationTask?.isEnabled()){
+            documentationTask.checkPreconditions()
+        }
     }
 
     @Override
     void configureOn(Project project) {
         printDebugInfo()
         //Only create those tasks if this is an android project (library or app)
-        if(Utils.isAndroidPlugin(project)){
-            qualityTask?.configureOn(project)
-            documentationTask?.configureOn(project)
-            testingTask?.configureOn(project)
+        if (Utils.isAndroidPlugin(project)) {
+            if(qualityTask?.isEnabled()){
+                qualityTask.configureOn(project)
+            }
+            if(documentationTask?.isEnabled()){
+                documentationTask.configureOn(project)
+            }
+            if(testingTask?.isEnabled()){
+                testingTask.configureOn(project)
+            }
         }
     }
 
     /**
      * Prints some debug information.
      */
-    private void printDebugInfo(){
-        if(this.debugEnabled){
+    private void printDebugInfo() {
+        if (this.debugEnabled) {
             println "----- GRILL BUILD INFO ------"
             println "Revision: ${CI.getCommitRevision()}"
             println "Branch: ${CI.getBranch()}"
