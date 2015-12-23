@@ -1,6 +1,6 @@
-package com.droidpl.android.grillplugin
+package com.github.droidpl.android.grillplugin
 
-import com.droidpl.android.grillplugin.tasks.GrillPluginExtension
+import com.github.droidpl.android.grillplugin.tasks.GrillPluginExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 

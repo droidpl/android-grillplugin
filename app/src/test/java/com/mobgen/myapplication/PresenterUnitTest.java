@@ -1,7 +1,7 @@
 package com.mobgen.myapplication;
 
-import com.droidpl.android.bbqpluginapp.MainPresenter;
-import com.droidpl.android.bbqpluginapp.MainViewTranslator;
+import com.github.droidpl.android.grillplugin.app.MainPresenter;
+import com.github.droidpl.android.grillplugin.app.MainViewTranslator;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

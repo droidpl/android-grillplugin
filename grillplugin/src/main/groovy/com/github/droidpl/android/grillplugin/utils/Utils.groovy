@@ -1,4 +1,4 @@
-package com.droidpl.android.grillplugin.utils
+package com.github.droidpl.android.grillplugin.utils
 import com.android.build.gradle.AppPlugin
 import com.android.build.gradle.LibraryPlugin
 import com.android.build.gradle.api.BaseVariant

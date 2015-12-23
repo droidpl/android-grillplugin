@@ -1,4 +1,4 @@
-package com.droidpl.android.bbqpluginapp;
+package com.github.droidpl.android.grillplugin.app;
 
 /**
  * View translator for the main activity.

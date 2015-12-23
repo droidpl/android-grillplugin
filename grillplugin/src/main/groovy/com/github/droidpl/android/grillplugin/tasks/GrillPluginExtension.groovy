@@ -1,7 +1,7 @@
-package com.droidpl.android.grillplugin.tasks
+package com.github.droidpl.android.grillplugin.tasks
 
-import com.droidpl.android.grillplugin.utils.CIHelper
-import com.droidpl.android.grillplugin.utils.Utils
+import com.github.droidpl.android.grillplugin.utils.CIHelper
+import com.github.droidpl.android.grillplugin.utils.Utils
 import org.gradle.api.Project
 
 /**
@@ -33,6 +33,11 @@ public class GrillPluginExtension extends AbstractTaskConfigurer {
      * Documentation task.
      */
     private DocumentationTask documentationTask
+
+    /**
+     * The distribution task.
+     */
+    private DistributionTask distributionTask
 
     /**
      * Constructor that uses the project.
@@ -83,6 +88,16 @@ public class GrillPluginExtension extends AbstractTaskConfigurer {
         project.configure(testingTask, properties)
     }
 
+    /**
+     * DSL Method.
+     * Enable the distribution properties.
+     * @param properties The properties to attach to the task.
+     */
+    def distribute(Closure properties){
+        distributionTask = new DistributionTask()
+        project.configure(distributionTask, properties)
+    }
+
     @Override
     void checkPreconditions() {
         if(qualityTask?.isEnabled()){
@@ -93,6 +108,9 @@ public class GrillPluginExtension extends AbstractTaskConfigurer {
         }
         if(documentationTask?.isEnabled()){
             documentationTask.checkPreconditions()
+        }
+        if(distributionTask?.isEnabled()){
+            distributionTask.checkPreconditions()
         }
     }
 
@@ -110,6 +128,9 @@ public class GrillPluginExtension extends AbstractTaskConfigurer {
             if(testingTask?.isEnabled()){
                 testingTask.configureOn(project)
             }
+        }
+        if(distributionTask?.isEnabled()){
+            distributionTask.configureOn(project)
         }
     }
 

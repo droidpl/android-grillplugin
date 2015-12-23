@@ -1,10 +1,12 @@
-package com.droidpl.android.bbqpluginapp;
+package com.github.droidpl.android.grillplugin.app;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.droidpl.android.app.R;
 
 /**
  * The main activity class to display our fancy changing button.

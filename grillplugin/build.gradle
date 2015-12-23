@@ -1,9 +1,6 @@
-plugins {
-    id "groovy"
-    id "maven"
-}
+apply plugin : "groovy"
 
-group = "com.droidpl.android"
+group = "com.github.droidpl"
 version = "1.0.0"
 
 repositories {
@@ -17,5 +14,37 @@ dependencies {
     compile 'org.sonarqube.gradle:gradle-sonarqube-plugin:1.1'
 }
 
-//Ensure the dir is clean to avoid the IDE bother with unreal errors
-install.doLast { clean.execute() }
+if(project.hasProperty("pluginCompile")) {
+    apply plugin: "maven"
+}else{
+    task sourcesJar(type: Jar) {
+        from sourceSets.main.groovy.srcDirs
+        classifier = 'sources'
+    }
+
+    task javadocJar(type: Jar, dependsOn: groovydoc) {
+        from groovydoc.destinationDir
+        classifier = 'javadoc'
+    }
+
+    apply plugin: "grill"
+    grill {
+        distribute {
+            libGroupId "com.github.droidpl"
+            libVersion "1.0"
+            libName "Grill plugin"
+            libDescription "Plugin to manage distribution, code coverage, code quality and cool documentation."
+            libDevId "droidpl"
+            libDevName "Javier de Pedro López"
+            libDevEmail "javierdepedrolopez@gmail.com"
+            libGitUrl "https://github.com/droidpl/GrillPlugin"
+            bintrayRepoName "GrillPlugin"
+            bintrayUser System.getenv("DROIDPL_BINTRAY_USER")
+            bintrayKey System.getenv("DROIDPL_BINTRAY_KEY")
+            bintrayMavenCentralUser System.getenv("DROIDPL_MAVEN_USER")
+            bintrayMavenCentralPassword System.getenv("DROIDPL_MAVEN_PASSWORD")
+            bintrayArtifactJavadoc project.tasks.getByName("javadocJar")
+            bintrayArtifactSources project.tasks.getByName("sourcesJar")
+        }
+    }
+}

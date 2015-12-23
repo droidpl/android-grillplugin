@@ -1,4 +1,4 @@
-package com.droidpl.android.bbqpluginapp;
+package com.github.droidpl.android.grillplugin.app;
 
 /**
  * Main presenter for the Main Application.

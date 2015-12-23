@@ -1,5 +1,5 @@
-package com.droidpl.android.grillplugin.tasks
-import com.droidpl.android.grillplugin.utils.Utils
+package com.github.droidpl.android.grillplugin.tasks
+import com.github.droidpl.android.grillplugin.utils.Utils
 import org.gradle.api.Project
 import org.gradle.api.ProjectConfigurationException
 import org.sonarqube.gradle.SonarQubePlugin
@@ -95,9 +95,6 @@ public class SonarQualityTask extends AbstractTaskConfigurer {
 
     @Override
     void configureOn(Project project) {
-        project.buildscript.repositories {
-            maven { url "https://plugins.gradle.org/m2/" }
-        }
         project.apply plugin: SonarQubePlugin
         Utils.getVariants(project).all { variant ->
             project.tasks.create(name: "codeQuality${variant.getName().capitalize()}", dependsOn: "test${variant.getName().capitalize()}UnitTest") {

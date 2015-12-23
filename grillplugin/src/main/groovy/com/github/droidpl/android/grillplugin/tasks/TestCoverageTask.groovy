@@ -1,5 +1,5 @@
-package com.droidpl.android.grillplugin.tasks
-import com.droidpl.android.grillplugin.utils.Utils
+package com.github.droidpl.android.grillplugin.tasks
+import com.github.droidpl.android.grillplugin.utils.Utils
 import org.gradle.api.Project
 import org.gradle.api.Task
 import com.android.build.gradle.api.BaseVariant

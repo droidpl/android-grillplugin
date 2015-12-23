@@ -1,7 +1,9 @@
-package com.droidpl.android.bbqpluginapp;
+package com.droidpl.android.app;
 
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.TextView;
+
+import com.github.droidpl.android.grillplugin.app.MainActivity;
 
 import junit.framework.Assert;
 

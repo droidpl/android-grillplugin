@@ -1,4 +1,4 @@
-package com.droidpl.android.grillplugin.utils
+package com.github.droidpl.android.grillplugin.utils
 /**
  * Helper class that performs some operations related to android.
  */

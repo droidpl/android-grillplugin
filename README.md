@@ -1,29 +1,32 @@
-# Grill plugin (BABBQ Europe)
-
-Supporting plugin based on the talk "The other Android Getting Started Guide" in the Big Android BBQ (Europe).
+# Grill plugin
+Android Gradle plugin based on the talk "The other Android Getting Started Guide" in the Big Android BBQ (Europe).
 This plugin enables the following features in your android project:
- * Continuous integration tips
+ * Some continuous integration tips
  * Unit testing
  * Unit test code coverage: Jacoco
  * Code quality: Sonar
  * Documentation: Doclava
+ * Library distribution in JCenter and MavenCentral
 
-## Install the plugin
-
-To install the plugin use the following command line:
-```bash
-./gradlew -PpluginCompile grillplugin:install
+## How to use it
+Add the classpath dependency:
+```groovy
+buildscript {
+    dependencies {
+        classpath 'com.github.droidpl.android:grillplugin:1.0'
+    }
+}
 ```
-
-## Apply plugin in your application
-To apply a plugin in the application you can use:
+Apply a plugin in the application or library:
 ```groovy
 apply plugin: "grill"
 ```
-You can use also the full name plugin:
 
-```groovy
-apply plugin: "com.droidpl.android.grillplugin"
+# Development
+## Install the plugin
+To install the plugin use the following command line:
+```bash
+./gradlew -PpluginCompile grillplugin:install
 ```
 
 ## Test the application
@@ -32,15 +35,13 @@ previous section. After that you can execute one of the following commands to te
 explained in the talk.
 
 ###Debug
-1. Android tests reports with jacoco:
-2. Unit testing reports with jacoco on JVM:
-3. Code quality information uploaded:
-4. Documentation from doclava:
-5. Install the application with CI info: ```./gradlew installDebug/installDebug```
+1. Unit testing reports with jacoco on JVM: ```createDebugUnitTestCoverageReport```
+2. Code quality information uploaded: ```codeQualityDebug```
+3. Documentation from doclava: ```documentationDebug```
+4. Install the application with CI info: ```installDebug```
 
 ### Release
-1. Android tests reports with jacoco:
-2. Unit testing reports with jacoco on JVM:
-3. Code quality information uploaded:
-4. Documentation from doclava:
-5. Install the application with CI info: ```./gradlew installDebug/installRelease```
+1. Unit testing reports with jacoco on JVM: ```createReleaseUnitTestCoverageReport```
+2. Code quality information uploaded: ```codeQualityRelease```
+3. Documentation from doclava: ```documentationRelease```
+4. Install the application with CI info: ```./gradlew installRelease```

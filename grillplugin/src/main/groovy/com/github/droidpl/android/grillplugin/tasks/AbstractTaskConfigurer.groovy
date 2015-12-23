@@ -1,4 +1,4 @@
-package com.droidpl.android.grillplugin.tasks
+package com.github.droidpl.android.grillplugin.tasks
 /**
  * Abstract class that allows the creation of different tasks.
  */
