@@ -12,6 +12,9 @@ This plugin enables the following features in your android project:
 Add the classpath dependency:
 ```groovy
 buildscript {
+    repositories {
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
     dependencies {
         classpath 'com.github.droidpl.android:grillplugin:1.0'
     }
