@@ -1,8 +1,11 @@
 package com.github.droidpl.android.grillplugin.tasks
+
+import com.android.build.gradle.api.BaseVariant
 import com.github.droidpl.android.grillplugin.utils.Utils
 import org.gradle.api.Project
 import org.gradle.api.Task
-import com.android.build.gradle.api.BaseVariant
+import org.gradle.api.tasks.testing.Test
+import org.gradle.testing.jacoco.plugins.JacocoPlugin
 import org.gradle.testing.jacoco.tasks.JacocoReport
 
 public class TestCoverageTask extends AbstractTaskConfigurer {
@@ -17,6 +20,12 @@ public class TestCoverageTask extends AbstractTaskConfigurer {
 
     @Override
     void configureOn(Project project) {
+        project.plugins.apply(JacocoPlugin)
+        project.tasks.withType(Test).whenTaskAdded {
+            it.jacoco.append = false
+            it.jacoco.classDumpFile = project.file("${project.buildDir}/jacoco/dump")
+        }
+
         Utils.getVariants(project).all { variant ->
             Task task = project.tasks.create(name: getTaskName(variant), type: JacocoReport, dependsOn: getUnitTestTaskName(variant)) {
                 group = "grill"

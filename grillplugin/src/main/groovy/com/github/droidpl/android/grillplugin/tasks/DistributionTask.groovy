@@ -240,5 +240,11 @@ public class DistributionTask extends AbstractTaskConfigurer {
                 }
             }
         }
+
+        def oldTask = project.tasks.bintrayUpload
+        project.tasks.remove(oldTask)
+        oldTask.name = "distribute"
+        oldTask.group = "grill"
+        project.tasks.add(oldTask)
     }
 }
