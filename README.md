@@ -16,7 +16,7 @@ buildscript {
         maven { url "https://plugins.gradle.org/m2/" }
     }
     dependencies {
-        classpath 'com.github.droidpl.android:grillplugin:1.1.1'
+        classpath 'com.github.droidpl.android:grillplugin:1.1.2'
     }
 }
 ```

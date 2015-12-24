@@ -155,8 +155,6 @@ public class DistributionTask extends AbstractTaskConfigurer {
         property = libLicName == null ? "libLicName" : property
         property = libDescription == null ? "libDescription" : property
         property = libName == null ? "libName" : property
-        property = libVersion == null ? "libVersion" : property
-        property = libGroupId == null ? "libGroupId" : property
         property = libPackaging == null ? "libPackaging" : property
         if(property != null) {
             throw new ProjectConfigurationException("Error while configuring the distribution. ${property} is null", null)
@@ -167,6 +165,12 @@ public class DistributionTask extends AbstractTaskConfigurer {
     void configureOn(Project project) {
         if(libArtifact == null){
             libArtifact = project.name
+        }
+        if(libGroupId == null){
+            libGroupId = project.group
+        }
+        if(libVersion == null){
+            libVersion = project.version
         }
         //Apply plugins
         project.apply plugin: 'com.jfrog.bintray'
