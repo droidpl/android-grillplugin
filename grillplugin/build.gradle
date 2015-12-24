@@ -3,11 +3,7 @@ apply plugin : "groovy"
 tasks.withType(JavaCompile) {
     sourceCompatibility = '1.7'
     targetCompatibility = '1.7'
-}
-
-tasks.withType(GroovyCompile) {
-    sourceCompatibility = '1.7'
-    targetCompatibility = '1.7'
+    options.bootClasspath = "${System.getProperty('java7.home')}/jre/lib/rt.jar"
 }
 
 repositories {
@@ -38,7 +34,7 @@ if(project.hasProperty("pluginCompile")) {
     grill {
         distribute {
             libGroupId "com.github.droidpl"
-            libVersion "1.2"
+            libVersion "1.1.1"
             libName "Grill plugin"
             libDescription "Plugin to manage distribution, code coverage, code quality and cool documentation."
             libDevId "droidpl"
