@@ -3,6 +3,12 @@ apply plugin : "groovy"
 group = "com.github.droidpl"
 version = "1.1"
 
+/**
+ * Minimun plugin compatibility for java 7
+ */
+targetCompatibility = JavaVersion.VERSION_1_7
+sourceCompatibility = JavaVersion.VERSION_1_7
+
 repositories {
     maven { url "https://plugins.gradle.org/m2/" }
 }
