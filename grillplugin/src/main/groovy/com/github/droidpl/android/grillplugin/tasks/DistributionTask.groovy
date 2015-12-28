@@ -106,12 +106,12 @@ public class DistributionTask extends AbstractTaskConfigurer {
         this.bintrayMavenCentralUser = bintrayMavenCentralUser
     }
 
-    void bintrayLicenses(String[] licenses) {
-        this.bintrayLicenses = licenses
-    }
-
     void bintrayMavenCentralPassword(String bintrayMavenCentralPassword) {
         this.bintrayMavenCentralPassword = bintrayMavenCentralPassword
+    }
+
+    void bintrayLicenses(String[] licenses) {
+        this.bintrayLicenses = licenses
     }
 
     void bintrayArtifactJavadoc(Task bintrayArtifactJavadoc) {

@@ -1,3 +1,7 @@
+![Android plugin](https://img.shields.io/badge/Android%20plugin-active-green.svg)
+![Gradle](https://img.shields.io/badge/Gradle-compatible-brightgreen.svg)
+[![Download](https://api.bintray.com/packages/droidpl/maven/GrillPlugin/images/download.svg) ](https://bintray.com/droidpl/maven/GrillPlugin/_latestVersion)
+
 # Grill plugin
 Android Gradle plugin based on the talk "The other Android Getting Started Guide" in the Big Android BBQ (Europe).
 This plugin enables the following features in your android project:
@@ -16,13 +20,60 @@ buildscript {
         maven { url "https://plugins.gradle.org/m2/" }
     }
     dependencies {
-        classpath 'com.github.droidpl.android:grillplugin:1.1.2'
+        classpath 'com.github.droidpl.android:grillplugin:{version}'
     }
 }
 ```
 Apply a plugin in the application or library:
 ```groovy
 apply plugin: "grill"
+```
+# DSL
+
+```groovy
+grill {
+        debug [Boolean]
+        codeQuality {
+            host [String Url]
+            projectKey [String]
+            projectName [String]
+            projectVersion [String version]
+            dbHost [String Url]
+            dbUser [String]
+            dbPassword [String]
+        }
+        documentation {
+            templateDir [String]
+            doclavaVersion [String version]
+        }
+        coverage {}
+        disribute {
+            libVersion [String] (Optional if in project.version)
+            libPackaging [String] (Optional)
+            libGroupId [String] (Optional if in project.group)
+            libArtifact [String] (Optional)
+            libName [String]
+            libDescription [String] (Optional)
+            libLicName [String] (Optional: default apache v2)
+            libLicUrl [String] (Optional: default apache v2)
+            libDevId [String] (Optional)
+            libDevName [String] (Optional)
+            libDevEmail [String] (Optional)
+            libSiteUrl [String] (Optional)
+            bintrayRepoName [String]
+            bintrayUser [String]
+            bintrayKey [String]
+            bintrayRepo [String] (Optional: default maven)
+            bintrayMavenCentralUser [String] (Optional)
+            bintrayMavenCentralPassword [String] (Optional)
+            bintrayLicenses [String[]] (Optional)
+            bintrayArtifactJavadoc [Task]
+            bintrayArtifactSources [Task]
+            bintrayMavenSync [Boolean]
+            binrayGpgSign [Boolean]
+            bintrayGpgPassphrase [String]
+        }
+    }
 ```
 
 # Development
