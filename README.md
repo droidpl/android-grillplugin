@@ -99,6 +99,3 @@ explained in the talk.
 2. Code quality information uploaded: ```codeQualityRelease```
 3. Documentation from doclava: ```documentationRelease```
 4. Install the application with CI info: ```./gradlew installRelease```
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/droidpl/grillplugin/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
