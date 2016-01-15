@@ -40,6 +40,11 @@ public class GrillPluginExtension extends AbstractTaskConfigurer {
     private DistributionTask distributionTask
 
     /**
+     * The google play distribution task.
+     */
+    private GooglePlayPublishTask googlePlayPublishTask
+
+    /**
      * Constructor that uses the project.
      * @param project The project with the plugin applied.
      */
@@ -61,41 +66,51 @@ public class GrillPluginExtension extends AbstractTaskConfigurer {
     /**
      * DSL Method
      * Enables the code quality feature and tasks.
-     * @param properties The properties.
+     * @param closure The properties.
      */
-    def codeQuality(Closure properties) {
+    def codeQuality(Closure closure) {
         qualityTask = new SonarQualityTask()
-        project.configure(qualityTask, properties)
+        project.configure(qualityTask, closure)
     }
 
     /**
      * DSL Method.
      * Enables the documentation task.
-     * @param properties Properties for the documentation task.
+     * @param closure Properties for the documentation task.
      */
-    def documentation(Closure properties) {
+    def documentation(Closure closure) {
         documentationTask = new DocumentationTask()
-        project.configure(documentationTask, properties)
+        project.configure(documentationTask, closure)
     }
 
     /**
      * DSL Method.
      * Enables the test coverage.
-     * @param properties The properties to attach to the task.
+     * @param closure The properties to attach to the task.
      */
-    def coverage(Closure properties) {
+    def coverage(Closure closure) {
         testingTask = new TestCoverageTask()
-        project.configure(testingTask, properties)
+        project.configure(testingTask, closure)
     }
 
     /**
      * DSL Method.
      * Enable the distribution properties.
-     * @param properties The properties to attach to the task.
+     * @param closure The properties to attach to the task.
      */
-    def distribute(Closure properties){
+    def distribute(Closure closure){
         distributionTask = new DistributionTask()
-        project.configure(distributionTask, properties)
+        project.configure(distributionTask, closure)
+    }
+
+    /**
+     * DSL Method
+     * Adds the google play configuration to auto upload an apk
+     * @param closure The closure to upload the apk
+     */
+    def googlePlay(Closure closure){
+        googlePlayPublishTask = new GooglePlayPublishTask()
+        project.configure(googlePlayPublishTask, closure)
     }
 
     @Override
@@ -112,6 +127,9 @@ public class GrillPluginExtension extends AbstractTaskConfigurer {
         if(distributionTask?.isEnabled()){
             distributionTask.checkPreconditions()
         }
+        if(googlePlayPublishTask?.isEnabled()){
+            googlePlayPublishTask.checkPreconditions()
+        }
     }
 
     @Override
@@ -127,6 +145,9 @@ public class GrillPluginExtension extends AbstractTaskConfigurer {
             }
             if(testingTask?.isEnabled()){
                 testingTask.configureOn(project)
+            }
+            if(googlePlayPublishTask?.isEnabled()){
+                googlePlayPublishTask.configureOn(project)
             }
         }
         if(distributionTask?.isEnabled()){

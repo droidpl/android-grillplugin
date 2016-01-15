@@ -47,6 +47,14 @@ grill {
             doclavaVersion [String version]
         }
         coverage {}
+        googlePlay {
+            privateKeyId [String]
+            clientEmail [String]
+            privateKey [File (.pem file in your system]
+            customize { editor [AppEdit], editId [String], apk [Apk]
+                // find more doc here: http://jeremie-martinez.com/2016/01/14/devops-on-android/
+            }
+        }
         disribute {
             libVersion [String] (Optional if in project.version)
             libPackaging [String] (Optional)
@@ -88,14 +96,16 @@ To install the application in your device, you need to install the plugin first 
 previous section. After that you can execute one of the following commands to test the tasks
 explained in the talk.
 
-###Debug
+### Debug
 1. Unit testing reports with jacoco on JVM: ```createDebugUnitTestCoverageReport```
 2. Code quality information uploaded: ```codeQualityDebug```
 3. Documentation from doclava: ```documentationDebug```
-4. Install the application with CI info: ```installDebug```
+4. Google play publishing: ```googlePlayPublishDebug```
+5. Install the application with CI info: ```installDebug```
 
 ### Release
 1. Unit testing reports with jacoco on JVM: ```createReleaseUnitTestCoverageReport```
 2. Code quality information uploaded: ```codeQualityRelease```
 3. Documentation from doclava: ```documentationRelease```
-4. Install the application with CI info: ```./gradlew installRelease```
+4. Google play publishing: ```googlePlayPublishRelease```
+5. Install the application with CI info: ```./gradlew installRelease```

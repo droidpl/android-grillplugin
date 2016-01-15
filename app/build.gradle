@@ -46,6 +46,16 @@ if(!isCompiling){
             dbUser "sonar"
             dbPassword "sonar"
         }
+        googlePlay {
+            privateKey new File("/myPem.pem")
+            privateKeyId "12323534"
+            clientEmail "javierdepedrolopez@gmail.com"
+            customize { edit, editId, apk ->
+                println edit
+                println editId
+                println apk
+            }
+        }
         documentation {}
         coverage {}
     }
