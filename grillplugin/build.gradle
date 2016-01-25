@@ -48,7 +48,7 @@ if(project.hasProperty("pluginCompile")) {
             bintrayMavenCentralPassword System.getenv("DROIDPL_MAVEN_PASSWORD")
             bintrayArtifactJavadoc project.tasks.getByName("javadocJar")
             bintrayArtifactSources project.tasks.getByName("sourcesJar")
-            bintrayMavenSync true
+            bintrayMavenSync project.hasProperty("sync")
         }
     }
 }
