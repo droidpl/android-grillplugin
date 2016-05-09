@@ -5,7 +5,7 @@ buildscript {
         maven { url "https://plugins.gradle.org/m2/" }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:1.5.0'
+        classpath 'com.android.tools.build:gradle:2.1.0'
         if(!project.hasProperty("pluginCompile")) {
             classpath 'com.github.droidpl:grillplugin:1.1.5'
             classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.4'

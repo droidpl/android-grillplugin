@@ -13,7 +13,7 @@ repositories {
 dependencies {
     compile gradleApi()
     compile localGroovy()
-    compile 'com.android.tools.build:gradle:1.5.0'
+    compile 'com.android.tools.build:gradle:2.1.0'
     compile 'org.sonarqube.gradle:gradle-sonarqube-plugin:1.1'
     compile 'com.google.apis:google-api-services-androidpublisher:v2-rev22-1.21.0'
 }

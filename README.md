@@ -46,7 +46,9 @@ grill {
             templateDir [String]
             doclavaVersion [String version]
         }
-        coverage {}
+        coverage {
+            excludes [String[]] // ["**/*$MyGeneratedClass*.*"]
+        }
         googlePlay {
             privateKeyId [String]
             clientEmail [String]
