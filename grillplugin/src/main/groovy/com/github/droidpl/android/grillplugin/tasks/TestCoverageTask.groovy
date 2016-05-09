@@ -12,6 +12,11 @@ public class TestCoverageTask extends AbstractTaskConfigurer {
 
     //TODO enable merge DSL. Still not working properly
     private boolean merge
+    private ArrayList<String> excludes = []
+
+    public void excludes(ArrayList<String> excludes){
+        this.excludes = excludes
+    }
 
     @Override
     void checkPreconditions() {
@@ -30,14 +35,16 @@ public class TestCoverageTask extends AbstractTaskConfigurer {
             Task task = project.tasks.create(name: getTaskName(variant), type: JacocoReport, dependsOn: getUnitTestTaskName(variant)) {
                 group = "grill"
                 def baseLocation = "${project.getBuildDir()}/intermediates/classes${Utils.buildVariantPath(variant)}"
-                classDirectories = project.fileTree(
-                        dir: "${baseLocation}",
-                        excludes: ['**/R.class',
+                def defaultExcludes = ['**/R.class',
                                    '**/R$*.class',
                                    '**/*$ViewInjector*.*',
                                    '**/BuildConfig.*',
                                    '**/Manifest*.*',
                                    '**/*_*Factory.*']
+                defaultExcludes.addAll(excludes)                   
+                classDirectories = project.fileTree(
+                        dir: "${baseLocation}",
+                        excludes: defaultExcludes
                 )
                 sourceDirectories = project.files("src/main/java", "src/debug/java")
                 executionData = project.files("${project.buildDir}/jacoco/test${variant.getName().capitalize()}UnitTest.exec")
