@@ -47,7 +47,7 @@ grill {
             doclavaVersion [String version]
         }
         coverage {
-            excludes [String[]] // ["**/*$MyGeneratedClass*.*"]
+            excludes ([String[]]) // (["**/*$MyGeneratedClass*.*"])
         }
         googlePlay {
             privateKeyId [String]

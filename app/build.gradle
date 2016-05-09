@@ -58,7 +58,7 @@ if(!isCompiling){
 //        }
         documentation {}
         coverage {
-            excludes ['**/*$MyGeneratedClass*.*']
+            excludes (['**/*$MyGeneratedClass*.*'])
         }
     }
 }
