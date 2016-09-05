@@ -27,7 +27,7 @@ public class Utils {
 
     static def buildVariantPath(BaseVariant variant) {
         StringBuilder builder = new StringBuilder()
-        if(variant.getFlavorName() != null){
+        if(variant.getFlavorName() != null && !"".equals(variant.getFlavorName())){
             builder.append("/${variant.getFlavorName()}")
         }
         builder.append("/${variant.getBuildType().getName()}")
