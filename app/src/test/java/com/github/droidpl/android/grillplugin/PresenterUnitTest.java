@@ -1,8 +1,7 @@
-package com.mobgen.myapplication;
+package com.github.droidpl.android.grillplugin;
 
 import com.github.droidpl.android.grillplugin.app.MainPresenter;
 import com.github.droidpl.android.grillplugin.app.MainViewTranslator;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.BlockJUnit4ClassRunner;
