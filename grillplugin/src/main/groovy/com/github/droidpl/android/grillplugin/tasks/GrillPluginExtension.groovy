@@ -137,18 +137,18 @@ public class GrillPluginExtension extends AbstractTaskConfigurer {
         printDebugInfo()
         //Only create those tasks if this is an android project (library or app)
         if (Utils.isAndroidPlugin(project)) {
-            if(qualityTask?.isEnabled()){
-                qualityTask.configureOn(project)
-            }
-            if(documentationTask?.isEnabled()){
-                documentationTask.configureOn(project)
-            }
-            if(testingTask?.isEnabled()){
-                testingTask.configureOn(project)
-            }
             if(googlePlayPublishTask?.isEnabled()){
                 googlePlayPublishTask.configureOn(project)
             }
+        }
+        if(qualityTask?.isEnabled()){
+            qualityTask.configureOn(project)
+        }
+        if(documentationTask?.isEnabled()){
+            documentationTask.configureOn(project)
+        }
+        if(testingTask?.isEnabled()){
+            testingTask.configureOn(project)
         }
         if(distributionTask?.isEnabled()){
             distributionTask.configureOn(project)
