@@ -113,7 +113,7 @@ public class SonarQualityTask extends AbstractTaskConfigurer {
                             property "sonar.projectName", "$sonarProjectName"
 
                             property "sonar.sources", "$SOURCES"
-                            property "sonar.binaries", "${project.buildDir}$BINARIES${Utils.buildVariantPath(variant)}"
+                            property "sonar.java.binaries", "${project.buildDir}$BINARIES${Utils.buildVariantPath(variant)}"
                             property "sonar.jacoco.reportPath", "${project.buildDir}$JACOCO_PATH/test${variant.getName().capitalize()}UnitTest.exec"
                         }
                     }
